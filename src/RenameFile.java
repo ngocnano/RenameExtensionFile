@@ -1,20 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.security.auth.kerberos.KerberosKey;
+
 import java.io.*;
 
 public class RenameFile {
 	private String path;
 	private File[] listFiles;
-	private String oldEnd; //old extension file
-	private String newEnd; //new extension file
+	private String oldEnd; //old file extension 
+	private String newEnd; //new file extension
 	
 	public RenameFile(String oldEnd, String newEnd) {
 		this.oldEnd = oldEnd;
 		this.newEnd = newEnd;
 	}
 	
-	public void loadListFile(String path) {
+	public void loadListFile(String path) throws IOException {
 		this.path = path;
 		listFiles = new File(this.path).listFiles();
 		
@@ -29,6 +32,12 @@ public class RenameFile {
 					file.renameTo(new File(temp));
 					System.out.println("rename " + temp);
 				}
+				
+				if(temp.contains("txt")) {
+				FixFile fixFile = new FixFile(temp);
+				fixFile.readFile();
+				}
+				
 			}
 			else if (file.isDirectory()) {
 				loadListFile(file.getPath());
@@ -39,10 +48,18 @@ public class RenameFile {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RenameFile renameFile = new RenameFile(".vtt", ".txt");
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter Path: ");
 		String path = scanner.nextLine();
-		renameFile.loadListFile(path);	
+
+		try {
+			renameFile.loadListFile(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 }
