@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.security.auth.kerberos.KerberosKey;
-
 import java.io.*;
 
 public class RenameFile {
@@ -53,7 +51,10 @@ public class RenameFile {
 		System.out.print("Enter Path: ");
 		String path = scanner.nextLine();
 
+		
+		//FixFile file = new FixFile(path);
 		try {
+			//file.readFile();
 			renameFile.loadListFile(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

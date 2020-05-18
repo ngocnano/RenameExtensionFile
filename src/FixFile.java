@@ -55,13 +55,16 @@ public class FixFile {
 		StringBuilder temp = new StringBuilder(line);
 		
 		for(int i = 0; i < temp.length(); i++) {
-			if(temp.charAt(i) == ':') {
+			if(temp.charAt(i) == ':' && (i != (temp.length() - 1))) {
+				
 				temp.deleteCharAt(i+1);
 			}
 			if(temp.charAt(i) == '-') {
 				temp.insert(i, "-");
 				i++;
 			}
+			
+			System.out.println(temp);
 		}
 		
 		line = temp.toString();
