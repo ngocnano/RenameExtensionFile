@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 import java.io.*;
@@ -31,11 +30,11 @@ public class RenameFile {
 					System.out.println("rename " + temp);
 				}
 				
-				if(temp.contains("txt")) {
-				FixFile fixFile = new FixFile(temp);
-				fixFile.readFile();
-				}
-				
+			 if(temp.contains("txt")) {
+			     FixFile fixFile = new FixFile(temp);
+			    fixFile.readFile();
+			}
+
 			}
 			else if (file.isDirectory()) {
 				loadListFile(file.getPath());
@@ -45,21 +44,28 @@ public class RenameFile {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		RenameFile renameFile = new RenameFile(".vtt", ".txt");
+		RenameFile renameFile = new RenameFile(".srt", ".txt");
 
 		Scanner scanner = new Scanner(System.in);
+		
+
+
+			
 		System.out.print("Enter Path: ");
 		String path = scanner.nextLine();
 
 		
 		//FixFile file = new FixFile(path);
-		try {
+		    try {
 			//file.readFile();
-			renameFile.loadListFile(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			    renameFile.loadListFile(path);
+		    } catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+		    }
+		
+		
+		scanner.close();
 	
 	}
 

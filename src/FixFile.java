@@ -22,20 +22,47 @@ public class FixFile {
 		File fileSRT = new File(path);
 		fileSRT.createNewFile();
 		
+		boolean check = false;
 		while(scanner.hasNextLine()) {
 			String temString = scanner.nextLine();
+	
 			listData.add(temString);
 		}
+		
+		for(int i = 0; i < listData.size(); i++) {
+			
+			System.out.println("lis ta ta" + listData.size());
+			
+			if(listData.get(i).contains(":")) {
+
+				if(listData.get(i+1).length() == 0) {
+					
+					listData.remove(i+1);
+					System.out.println(listData.size());
+				
+				}
+			
+			}
+			
+		}
+		
 		
 		try {
 			FileWriter fWriter = new FileWriter(fileSRT);
 			
-			for(String temp : listData) {
+			boolean checkEnter;
+			
+			for(int i = 0; i < listData.size();i++) {
+				
+				checkEnter = false;
+				
+				String temp = listData.get(i);
 				
 				if(temp.contains(":")) {
 					temp = modefiedLine(temp);
 				}
 				
+
 				fWriter.write(temp);
 				fWriter.write("\n");
 			}
@@ -68,6 +95,9 @@ public class FixFile {
 		}
 		
 		line = temp.toString();
+		
+		if(line.contains(",")) line.replace(',', '.'); 
+		
 		return line;
 	}
 
